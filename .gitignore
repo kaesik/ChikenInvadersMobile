@@ -1,0 +1,13 @@
+﻿[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild*/
+[Ll]ogs/
+UserSettings/
+.vs/
+*.suo
+*.user
+*.tmp
+*.pdb
+*.opendb
+*.VC.db
