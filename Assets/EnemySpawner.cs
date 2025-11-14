@@ -9,10 +9,11 @@ public class EnemySpawner : MonoBehaviour
     public float spacingX = 1.2f;
     public float spacingZ = 1.0f;
 
-    public float moveSpeed = 1.0f; // w stronę gracza (–Z kamery? tutaj +Z idzie od kamery, my stoimy na -Z, więc wrogowie zbliżają się zmniejszając dystans)
+    public float moveSpeed = 1.0f;
     public float startZ = 10f;
-    public float endZ = -6.5f; // linia porażki
+    public float endZ = -6.5f;
 
+    private Rigidbody _rb;
     private readonly List<GameObject> _alive = new List<GameObject>();
     private bool _waveActive;
 
@@ -20,21 +21,27 @@ public class EnemySpawner : MonoBehaviour
     {
         SpawnWave();
     }
-
+    
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
+    
     private void Update()
     {
         if (!_waveActive) return;
-        // całą grupę zbliżamy przesuwając spawner
-        transform.position += Vector3.back * (moveSpeed * Time.deltaTime);
 
-        // przegrana jeśli dotarli
+        if (_rb is not null && _rb.isKinematic)
+            _rb.MovePosition(_rb.position + Vector3.back * (moveSpeed * Time.fixedDeltaTime));
+        else
+            transform.position += Vector3.back * (moveSpeed * Time.fixedDeltaTime);
+
         if (transform.position.z <= endZ)
         {
             _waveActive = false;
             GameManager.Instance.LoseLife();
         }
 
-        // jeśli wszyscy zniszczeni – nowa fala
         _alive.RemoveAll(e => !e);
         if (_alive.Count != 0) return;
         GameManager.Instance.NextWave();
@@ -43,7 +50,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnWave()
     {
-        // Reset pozycji spawnera przed graczem
         transform.position = new Vector3(0f, 0f, startZ);
 
         _alive.Clear();

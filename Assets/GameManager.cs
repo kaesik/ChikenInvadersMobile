@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
-        // DontDestroyOnLoad(gameObject); // niepotrzebne dla jednej sceny
     }
 
     private void Start()
@@ -54,7 +53,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // nowa fala po stracie życia
             spawner.SpawnWave();
         }
     }
@@ -62,9 +60,7 @@ public class GameManager : MonoBehaviour
     public void NextWave()
     {
         _wave++;
-        // lekkie podkręcenie trudności
         spawner.moveSpeed += 0.2f;
-        // opcjonalnie: zwiększ rows/columns co 2 fale
         if (_wave % 2 == 0) spawner.rows = Mathf.Min(spawner.rows + 1, 5);
         if (_wave % 3 == 0) spawner.columns = Mathf.Min(spawner.columns + 1, 8);
     }
@@ -73,7 +69,6 @@ public class GameManager : MonoBehaviour
     {
         _gameOver = true;
         gameOverPanel.SetActive(true);
-        // Możesz też zatrzymać strzelanie:
         player.enabled = false;
     }
 
@@ -83,7 +78,6 @@ public class GameManager : MonoBehaviour
         if (livesText) livesText.text = "Lives: " + lives;
     }
 
-    // przypnij do przycisku Restart
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -5,11 +5,15 @@ public class PlayerController : MonoBehaviour
     [Header("Move")]
     public float moveSpeed = 12f;
     public float clampX = 4.5f;
-
+    
+    [Header("Bounds")]
+    public float minZ = -6.0f;
+    public float maxZ =  1.5f;
+    
     [Header("Shooting")]
     public GameObject projectilePrefab;
     public Transform shootPoint;
-    public float fireRate = 6f; // strzałów na sekundę
+    public float fireRate = 6f;
     private float _fireTimer;
 
     private Camera _cam;
@@ -27,34 +31,38 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMove()
     {
-        // Obsługa dotyku i myszy – przesuwanie w poziomie
         if (Input.touchCount > 0)
         {
-            var world = ScreenToWorldX(Input.GetTouch(0).position);
-            MoveTowardsX(world.x);
+            var world = ScreenToWorldOnGround(Input.GetTouch(0).position);
+            MoveTowardsXZ(world);
         }
         else if (Input.GetMouseButton(0))
         {
-            var world = ScreenToWorldX(Input.mousePosition);
-            MoveTowardsX(world.x);
+            var world = ScreenToWorldOnGround(Input.mousePosition);
+            MoveTowardsXZ(world);
         }
     }
 
-    private Vector3 ScreenToWorldX(Vector3 screenPos)
+    private Vector3 ScreenToWorldOnGround(Vector2 screenPos)
     {
-        // rzutujemy na płaszczyznę Z gracza
-        var zDistance = Mathf.Abs(_cam.transform.position.z - transform.position.z);
-        var world = _cam.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, zDistance));
+        var ray = _cam.ScreenPointToRay(screenPos);
+        var ground = new Plane(Vector3.up, new Vector3(0f, transform.position.y, 0f));
+        if (!ground.Raycast(ray, out var enter)) return transform.position;
+        var world = ray.GetPoint(enter);
         return world;
     }
 
-    private void MoveTowardsX(float targetX)
+    private void MoveTowardsXZ(Vector3 target)
     {
-        var newX = Mathf.MoveTowards(transform.position.x, targetX, moveSpeed * Time.deltaTime);
-        newX = Mathf.Clamp(newX, -clampX, clampX);
-        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-    }
+        var targetXZ = new Vector3(target.x, transform.position.y, target.z);
+        var newPos = Vector3.MoveTowards(transform.position, targetXZ, moveSpeed * Time.deltaTime);
 
+        newPos.x = Mathf.Clamp(newPos.x, -clampX, clampX);
+        newPos.z = Mathf.Clamp(newPos.z, minZ, maxZ);
+
+        transform.position = newPos;
+    }
+    
     private void HandleShoot()
     {
         _fireTimer += Time.deltaTime;
