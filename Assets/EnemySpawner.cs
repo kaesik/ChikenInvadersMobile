@@ -83,7 +83,7 @@ public class EnemySpawner : MonoBehaviour
 
         var gm = GameManager.Instance;
         var healthBonus = 0f;
-        if (gm != null && gm.wave > 0)
+        if (gm && gm.wave > 0)
             healthBonus = gm.enemyHealthBonusPerWave * (gm.wave - 1);
 
         for (var r = 0; r < rows; r++)
@@ -93,7 +93,7 @@ public class EnemySpawner : MonoBehaviour
                 var localPos = new Vector3((c - (columns - 1) / 2f) * spacingX, 0.3f, -(r * spacingZ));
                 var enemy = Instantiate(enemyPrefab, transform.position + localPos, Quaternion.identity, transform);
                 var enemyComp = enemy.GetComponent<Enemy>();
-                if (enemyComp != null)
+                if (enemyComp)
                     enemyComp.maxHealth += healthBonus;
                 _alive.Add(enemy);
             }

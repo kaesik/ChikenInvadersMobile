@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public class EnemyProjectile : MonoBehaviour
 {
     #region Motion
@@ -15,7 +14,6 @@ public class EnemyProjectile : MonoBehaviour
     public float hitRadius = 0.75f;
     #endregion
 
-    private Rigidbody _rb;
     private bool _hit;
     private Vector3 _direction;
     private Transform _player;
@@ -23,13 +21,6 @@ public class EnemyProjectile : MonoBehaviour
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-        _rb.useGravity = false;
-        _rb.isKinematic = true;
-        _rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        var col = GetComponent<Collider>();
-        col.isTrigger = true;
-
         var angle = Random.Range(-maxAngleOffset, maxAngleOffset);
         var rot = Quaternion.Euler(0f, angle, 0f);
         _direction = rot * Vector3.back;
@@ -41,43 +32,50 @@ public class EnemyProjectile : MonoBehaviour
 
         var playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null) _player = playerObj.transform;
+
         _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (_hit) return;
 
-        var next = _rb.position + _direction * (speed * Time.fixedDeltaTime);
-        _rb.MovePosition(next);
+        transform.position += _direction * (speed * Time.deltaTime);
 
         if (!_player || !_gm) return;
-        var dist = Vector3.Distance(_rb.position, _player.position);
-        if (dist > hitRadius) return;
 
-        _hit = true;
-        _gm.LoseLife();
-        Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (_hit) return;
-
-        var playerProjectile = other.GetComponent<Projectile>();
-        if (playerProjectile != null)
+        if (Vector3.Distance(transform.position, _player.position) <= hitRadius)
         {
-            _hit = true;
-            Destroy(playerProjectile.gameObject);
-            Destroy(gameObject);
+            HitPlayer();
             return;
         }
 
-        if (!other.CompareTag("Player") && other.GetComponent<PlayerController>() == null) return;
-        if (_gm == null) _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
-        if (_gm == null) return;
+        CheckHitPlayerProjectile();
+    }
+
+    private void CheckHitPlayerProjectile()
+    {
+        if (_hit) return;
+
+        var projectiles = FindObjectsOfType<Projectile>();
+
+        foreach (var p in projectiles)
+        {
+            var dist = Vector3.Distance(transform.position, p.transform.position);
+            if (!(dist < 0.4f)) continue;
+            Destroy(p.gameObject);
+            Destroy(gameObject);
+            _hit = true;
+            return;
+        }
+    }
+
+    private void HitPlayer()
+    {
+        if (_hit) return;
+
         _hit = true;
-        _gm.LoseLife();
+        _gm?.LoseLife();
         Destroy(gameObject);
     }
 }

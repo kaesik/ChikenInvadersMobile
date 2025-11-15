@@ -45,10 +45,13 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\RotateMesh.cs" />
     <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\Projectile.cs" />
     <Compile Include="Assets\Enemy.cs" />
+    <Compile Include="Assets\HUDController.cs" />
     <Compile Include="Assets\Import\TeKniKo_Free\Power_Ups\Scripts\ObjectBounce.cs" />
+    <Compile Include="Assets\EnemyCharger.cs" />
     <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\ChickenWing.cs" />
     <Compile Include="Assets\EnemyProjectile.cs" />

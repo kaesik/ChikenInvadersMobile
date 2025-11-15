@@ -33,6 +33,11 @@ public class Enemy : MonoBehaviour
     public float touchDamageRadius = 0.75f;
     #endregion
 
+    #region Charge
+    [Header("Charge")]
+    public float returnPositionTolerance = 0.1f;
+    #endregion
+
     private float _currentHealth;
     private Renderer _rend;
     private Color _originalColor;
@@ -40,6 +45,14 @@ public class Enemy : MonoBehaviour
     private Transform _player;
     private GameManager _gm;
     private bool _hitPlayer;
+
+    private bool _charging;
+    private bool _returning;
+    private Vector3 _chargeTarget;
+    private float _chargeSpeed;
+
+    private Transform _homeParent;
+    private Vector3 _homeLocalPos;
 
     private void Awake()
     {
@@ -57,18 +70,70 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         _currentHealth = maxHealth;
+        _hitPlayer = false;
+        _charging = false;
+        _returning = false;
+
         if (_rend != null) _rend.material.color = _originalColor;
         if (enemyProjectilePrefab != null) _shootCo = StartCoroutine(ShootLoop());
+
+        if (EnemyCharger.Instance != null) EnemyCharger.Instance.RegisterEnemy(this);
     }
 
     private void OnDisable()
     {
         if (_shootCo != null) StopCoroutine(_shootCo);
+        if (EnemyCharger.Instance != null) EnemyCharger.Instance.UnregisterEnemy(this);
     }
 
     private void Update()
     {
         if (_hitPlayer) return;
+
+        if (_charging)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _chargeTarget, _chargeSpeed * Time.deltaTime);
+
+            if (_player && _gm)
+            {
+                var distToPlayer = Vector3.Distance(transform.position, _player.position);
+                if (distToPlayer <= touchDamageRadius)
+                {
+                    _hitPlayer = true;
+                    _gm.LoseLife();
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+
+            var distToTarget = Vector3.Distance(transform.position, _chargeTarget);
+            if (!(distToTarget <= returnPositionTolerance)) return;
+            _charging = false;
+            _returning = true;
+
+            return;
+        }
+
+        if (_returning)
+        {
+            if (_homeParent)
+            {
+                var targetPos = _homeParent.TransformPoint(_homeLocalPos);
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, _chargeSpeed * Time.deltaTime);
+                var distBack = Vector3.Distance(transform.position, targetPos);
+                if (distBack <= returnPositionTolerance)
+                {
+                    _returning = false;
+                }
+            }
+            else
+            {
+                _returning = false;
+            }
+
+            return;
+        }
+
         if (!_player || !_gm) return;
         var dist = Vector3.Distance(transform.position, _player.position);
         if (dist > touchDamageRadius) return;
@@ -107,6 +172,17 @@ public class Enemy : MonoBehaviour
         if (_currentHealth <= 0f) Die();
     }
 
+    public void StartCharge(Vector3 playerPosition, float speed)
+    {
+        if (_charging || _hitPlayer) return;
+        _homeParent = transform.parent;
+        _homeLocalPos = transform.localPosition;
+        _chargeTarget = new Vector3(playerPosition.x, transform.position.y, playerPosition.z);
+        _chargeSpeed = speed;
+        _charging = true;
+        _returning = false;
+    }
+
     private IEnumerator FlashOnHit()
     {
         _rend.material.color = hitColor;
@@ -116,6 +192,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        if (EnemyCharger.Instance != null) EnemyCharger.Instance.UnregisterEnemy(this);
+
         Destroy(gameObject);
 
         if (chickenWingPrefab != null)

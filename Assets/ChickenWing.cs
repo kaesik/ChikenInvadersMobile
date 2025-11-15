@@ -32,7 +32,6 @@ public class ChickenWing : MonoBehaviour
     private void Update()
     {
         transform.position += Vector3.back * (fallSpeed * Time.deltaTime);
-        transform.Rotate(rotationSpeed * Time.deltaTime, Space.World);
 
         if (!_player || !_gm) return;
 

@@ -22,7 +22,6 @@ public class ShotUpgrade : MonoBehaviour
     private void Update()
     {
         transform.position += Vector3.back * (fallSpeed * Time.deltaTime);
-        transform.Rotate(0f, 0f, 150f * Time.deltaTime);
 
         if (!_player) return;
 

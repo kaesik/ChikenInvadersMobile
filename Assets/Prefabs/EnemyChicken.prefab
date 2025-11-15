@@ -80,6 +80,7 @@ MonoBehaviour:
   maxShootDelay: 4
   shootChanceAlive: 0.35
   touchDamageRadius: 0.75
+  returnPositionTolerance: 0.1
 --- !u!1 &2777834706719470978
 GameObject:
   m_ObjectHideFlags: 0

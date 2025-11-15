@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,8 +20,6 @@ public class GameManager : MonoBehaviour
 
     #region UI
     [Header("UI")]
-    public TMP_Text scoreTMP;
-    public TMP_Text livesTMP;
     public GameObject gameOverPanel;
     #endregion
 
@@ -34,28 +30,45 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this; else Destroy(gameObject);
-        UpdateScoreUI();
-        UpdateLivesUI();
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+
         if (gameOverPanel) gameOverPanel.SetActive(false);
+    }
+
+    private void Start()
+    {
+        var hud = HUDController.Instance;
+        if (hud == null) return;
+        hud.SetScore(score);
+        hud.SetLives(lives);
+        hud.SetWave(wave);
     }
 
     public void AddScore(int value)
     {
         score += value;
-        UpdateScoreUI();
+
+        var hud = HUDController.Instance;
+        if (hud) hud.SetScore(score);
     }
 
     public void LoseLife()
     {
         lives -= 1;
-        UpdateLivesUI();
+
+        var hud = HUDController.Instance;
+        if (hud) hud.SetLives(lives);
+
         if (lives <= 0) GameOver();
     }
 
     public void NextWave()
     {
         wave += 1;
+
+        var hud = HUDController.Instance;
+        if (hud) hud.SetWave(wave);
 
         if (!spawner) return;
         spawner.rows = Mathf.Clamp(spawner.rows + 1, 1, 8);
@@ -66,15 +79,5 @@ public class GameManager : MonoBehaviour
     {
         if (gameOverPanel) gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
-    }
-
-    private void UpdateScoreUI()
-    {
-        if (scoreTMP) scoreTMP.text = "Score: " + score;
-    }
-
-    private void UpdateLivesUI()
-    {
-        if (livesTMP) livesTMP.text = "Lives: " + lives;
     }
 }
