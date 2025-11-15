@@ -68,15 +68,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24ef9c5e3c857341ba76caa51453f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 3
   scoreValue: 10
   hitColor: {r: 1, g: 0, b: 0, a: 1}
-  hitFlashDuration: 0.05
+  hitFlashDuration: 0.15
   enemyProjectilePrefab: {fileID: 2129192566354762151, guid: 3bbfa5aeb696f9c40a74d64ed43f30ed, type: 3}
   shootPoint: {fileID: 5680267310316535501}
-  minShootDelay: 1.5
+  minShootDelay: 2
   maxShootDelay: 4
-  shootChanceAlive: 0.65
+  shootChanceAlive: 0.35
 --- !u!1 &2777834706719470978
 GameObject:
   m_ObjectHideFlags: 0

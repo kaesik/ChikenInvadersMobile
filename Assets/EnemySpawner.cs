@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour
     private bool _settled;
     private int _dir = 1;
     private float _halfWidth;
+    private float _targetZInternal;
 
     private void Start()
     {
@@ -44,14 +45,17 @@ public class EnemySpawner : MonoBehaviour
         if (!_settled)
         {
             var pos = transform.position;
-            pos = Vector3.MoveTowards(pos, new Vector3(pos.x, pos.y, targetZ), descendSpeed * Time.fixedDeltaTime);
+            var targetPos = new Vector3(pos.x, pos.y, _targetZInternal);
+            pos = Vector3.MoveTowards(pos, targetPos, descendSpeed * Time.fixedDeltaTime);
             transform.position = pos;
-            if (Mathf.Abs(pos.z - targetZ) < 0.01f) _settled = true;
+            if (Mathf.Abs(pos.z - _targetZInternal) < 0.01f) _settled = true;
             return;
         }
 
-        var stepX = _dir * horizontalSpeed * Time.fixedDeltaTime;
-        transform.position += new Vector3(stepX, 0f, 0f);
+        var posMove = transform.position;
+        posMove.x += _dir * horizontalSpeed * Time.fixedDeltaTime;
+        posMove.z = Mathf.MoveTowards(posMove.z, _targetZInternal, descendSpeed * Time.fixedDeltaTime);
+        transform.position = posMove;
 
         var leftEdge = transform.position.x - _halfWidth;
         var rightEdge = transform.position.x + _halfWidth;
@@ -59,9 +63,7 @@ public class EnemySpawner : MonoBehaviour
         if (rightEdge > rightBoundX || leftEdge < leftBoundX)
         {
             _dir *= -1;
-            var pos = transform.position;
-            pos.z = Mathf.Clamp(pos.z - stepDownOnTurn, minZ, maxZ);
-            transform.position = pos;
+            _targetZInternal = Mathf.Clamp(_targetZInternal - stepDownOnTurn, minZ, maxZ);
         }
 
         _alive.RemoveAll(e => !e);
@@ -77,6 +79,7 @@ public class EnemySpawner : MonoBehaviour
         _dir = 1;
         _alive.Clear();
         _halfWidth = ((columns - 1) * spacingX) * 0.5f;
+        _targetZInternal = targetZ;
 
         for (var r = 0; r < rows; r++)
         {

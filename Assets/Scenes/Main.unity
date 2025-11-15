@@ -1112,7 +1112,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1443d03c99ac2b44bb3adc6a875f2a18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1192,15 +1192,15 @@ MonoBehaviour:
   rows: 3
   spacingX: 1.25
   spacingZ: 1
-  spawnZ: 12
-  targetZ: 8
+  spawnZ: 20
+  targetZ: 10
   descendSpeed: 2
   horizontalSpeed: 1
   leftBoundX: -4.5
   rightBoundX: 4.5
   stepDownOnTurn: 0.25
   minZ: 2.5
-  maxZ: 8
+  maxZ: 10
 --- !u!4 &1865591513
 Transform:
   m_ObjectHideFlags: 0
