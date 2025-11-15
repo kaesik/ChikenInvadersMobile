@@ -1,85 +1,76 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    #region Singleton
     public static GameManager Instance;
+    #endregion
 
-    [Header("UI")]
-    public TMP_Text scoreText;
-    public TMP_Text livesText;
-    public GameObject gameOverPanel;
-
-    [Header("Game")]
+    #region State
+    [Header("State")]
     public int lives = 3;
     public int score = 0;
-    public EnemySpawner spawner;
-    public PlayerController player;
+    #endregion
 
-    private int _wave = 1;
-    private bool _gameOver;
+    #region UI
+    [Header("UI")]
+    public Text scoreText;
+    public Text livesText;
+    public TMP_Text scoreTMP;
+    public TMP_Text livesTMP;
+    public GameObject gameOverPanel;
+    #endregion
+
+    #region Refs
+    [Header("Refs")]
+    public EnemySpawner spawner;
+    #endregion
 
     private void Awake()
     {
-        if (Instance != null) { Destroy(gameObject); return; }
-        Instance = this;
-    }
-
-    private void Start()
-    {
-        UpdateUI();
-        gameOverPanel.SetActive(false);
+        if (Instance == null) Instance = this; else Destroy(gameObject);
+        UpdateScoreUI();
+        UpdateLivesUI();
+        if (gameOverPanel) gameOverPanel.SetActive(false);
     }
 
     public void AddScore(int value)
     {
-        if (_gameOver) return;
         score += value;
-        UpdateUI();
+        UpdateScoreUI();
     }
 
     public void LoseLife()
     {
-        if (_gameOver) return;
-
-        lives--;
-        UpdateUI();
-
-        if (lives <= 0)
-        {
-            GameOver();
-        }
-        else
-        {
-            spawner.SpawnWave();
-        }
+        lives -= 1;
+        UpdateLivesUI();
+        if (lives <= 0) GameOver();
     }
 
     public void NextWave()
     {
-        _wave++;
-        spawner.moveSpeed += 0.2f;
-        if (_wave % 2 == 0) spawner.rows = Mathf.Min(spawner.rows + 1, 5);
-        if (_wave % 3 == 0) spawner.columns = Mathf.Min(spawner.columns + 1, 8);
+        if (!spawner) return;
+        spawner.rows = Mathf.Clamp(spawner.rows + 1, 1, 8);
+        spawner.horizontalSpeed += 0.15f;
     }
 
     private void GameOver()
     {
-        _gameOver = true;
-        gameOverPanel.SetActive(true);
-        player.enabled = false;
+        if (gameOverPanel) gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
-    private void UpdateUI()
+    private void UpdateScoreUI()
     {
         if (scoreText) scoreText.text = "Score: " + score;
-        if (livesText) livesText.text = "Lives: " + lives;
+        if (scoreTMP) scoreTMP.text = "Score: " + score;
     }
 
-    public void Restart()
+    private void UpdateLivesUI()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (livesText) livesText.text = "Lives: " + lives;
+        if (livesTMP) livesTMP.text = "Lives: " + lives;
     }
 }

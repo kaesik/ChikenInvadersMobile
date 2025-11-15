@@ -2,37 +2,31 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    #region Stats
+    [Header("Motion")]
     public float speed = 18f;
     public float lifeTime = 3f;
-    public int damage = 1;
     public float topZLimit = 10f;
 
-    private Rigidbody _rb;
-    private bool _hit;
+    [Header("Damage")]
+    public int damage = 1;
+    #endregion
 
-    private void Awake() => _rb = GetComponent<Rigidbody>();
-
-    private void Start() => Destroy(gameObject, lifeTime);
-
-    private void FixedUpdate()
+    private void Start()
     {
-        if (_hit) return;
+        Destroy(gameObject, lifeTime);
+    }
 
-        var next = _rb.position + Vector3.forward * (speed * Time.fixedDeltaTime);
-        _rb.MovePosition(next);
-
-        if (next.z > topZLimit)
-            Destroy(gameObject);
+    private void Update()
+    {
+        transform.position += Vector3.forward * (speed * Time.deltaTime);
+        if (transform.position.z > topZLimit) Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_hit) return;
-
         var enemy = other.GetComponent<Enemy>();
         if (enemy == null) return;
-
-        _hit = true;
         enemy.TakeDamage(damage);
         Destroy(gameObject);
     }

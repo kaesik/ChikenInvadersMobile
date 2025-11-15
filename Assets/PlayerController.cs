@@ -2,19 +2,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Move
     [Header("Move")]
     public float moveSpeed = 12f;
     public float clampX = 4.5f;
-    
+    #endregion
+
+    #region Bounds
     [Header("Bounds")]
     public float minZ = -6.0f;
     public float maxZ =  1.5f;
-    
+    #endregion
+
+    #region Shooting
     [Header("Shooting")]
     public GameObject projectilePrefab;
     public Transform shootPoint;
     public float fireRate = 6f;
     private float _fireTimer;
+    #endregion
 
     private Camera _cam;
 
