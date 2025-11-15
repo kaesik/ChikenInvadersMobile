@@ -49,6 +49,7 @@
     <Compile Include="Assets\Projectile.cs" />
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\EnemySpawner.cs" />
+    <Compile Include="Assets\ChickenWing.cs" />
     <Compile Include="Assets\EnemyProjectile.cs" />
     <Compile Include="Assets\GameManager.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

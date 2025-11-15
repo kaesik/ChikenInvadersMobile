@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
     #region Stats
     [Header("Stats")]
     public int maxHealth = 2;
-    public int scoreValue = 10;
+    public GameObject chickenWingPrefab;
     #endregion
 
     #region Hit Feedback
@@ -24,15 +24,30 @@ public class Enemy : MonoBehaviour
     public float shootChanceAlive = 0.65f;
     #endregion
 
+    #region Player Hit
+    [Header("Player Hit")]
+    public float touchDamageRadius = 0.75f;
+    #endregion
+
     private int _currentHealth;
     private Renderer _rend;
     private Color _originalColor;
     private Coroutine _shootCo;
+    private Transform _player;
+    private GameManager _gm;
+    private bool _hitPlayer;
 
     private void Awake()
     {
         _rend = GetComponentInChildren<Renderer>();
         if (_rend != null) _originalColor = _rend.material.color;
+    }
+
+    private void Start()
+    {
+        var playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) _player = playerObj.transform;
+        _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
     }
 
     private void OnEnable()
@@ -47,6 +62,17 @@ public class Enemy : MonoBehaviour
         if (_shootCo != null) StopCoroutine(_shootCo);
     }
 
+    private void Update()
+    {
+        if (_hitPlayer) return;
+        if (!_player || !_gm) return;
+        var dist = Vector3.Distance(transform.position, _player.position);
+        if (dist > touchDamageRadius) return;
+        _hitPlayer = true;
+        _gm.LoseLife();
+        Destroy(gameObject);
+    }
+
     private IEnumerator ShootLoop()
     {
         while (true)
@@ -59,10 +85,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision c)
+    private void OnTriggerEnter(Collider other)
     {
-        if (!c.collider.CompareTag("Player")) return;
-        GameManager.Instance.LoseLife();
+        if (_hitPlayer) return;
+        if (!other.CompareTag("Player") && other.GetComponent<PlayerController>() == null) return;
+        if (_gm == null) _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
+        if (_gm == null) return;
+        _hitPlayer = true;
+        _gm.LoseLife();
         Destroy(gameObject);
     }
 
@@ -82,7 +112,10 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        GameManager.Instance.AddScore(scoreValue);
         Destroy(gameObject);
+        if (chickenWingPrefab != null)
+        {
+            Instantiate(chickenWingPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

@@ -130,13 +130,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 25
-  minX: -5.5
-  maxX: 5.5
+  clampX: 4.5
   minZ: -9
   maxZ: 9
   projectilePrefab: {fileID: 2129192566354762151, guid: fcd8369894446954da2baa3e720651f0, type: 3}
   shootPoint: {fileID: 5008359377566779364}
-  fireRate: 4
+  fireRate: 2
 --- !u!1001 &3374355384950593923
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
 
     #region UI
     [Header("UI")]
-    public Text scoreText;
-    public Text livesText;
     public TMP_Text scoreTMP;
     public TMP_Text livesTMP;
     public GameObject gameOverPanel;
@@ -64,13 +62,11 @@ public class GameManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
-        if (scoreText) scoreText.text = "Score: " + score;
         if (scoreTMP) scoreTMP.text = "Score: " + score;
     }
 
     private void UpdateLivesUI()
     {
-        if (livesText) livesText.text = "Lives: " + lives;
         if (livesTMP) livesTMP.text = "Lives: " + lives;
     }
 }

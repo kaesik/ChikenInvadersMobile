@@ -1198,7 +1198,7 @@ MonoBehaviour:
   horizontalSpeed: 1
   leftBoundX: -4.5
   rightBoundX: 4.5
-  stepDownOnTurn: 0.25
+  stepDownOnTurn: 0.5
   minZ: 2.5
   maxZ: 10
 --- !u!4 &1865591513
@@ -1394,10 +1394,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   score: 0
-  scoreText: {fileID: 0}
-  livesText: {fileID: 0}
-  scoreTMP: {fileID: 0}
-  livesTMP: {fileID: 0}
+  scoreTMP: {fileID: 1565792255}
+  livesTMP: {fileID: 408786270}
   gameOverPanel: {fileID: 568781216}
   spawner: {fileID: 1865591512}
 --- !u!1 &2120705399

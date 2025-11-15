@@ -10,9 +10,16 @@ public class EnemyProjectile : MonoBehaviour
     public float maxAngleOffset = 5f;
     #endregion
 
+    #region Player Hit
+    [Header("Player Hit")]
+    public float hitRadius = 0.75f;
+    #endregion
+
     private Rigidbody _rb;
     private bool _hit;
     private Vector3 _direction;
+    private Transform _player;
+    private GameManager _gm;
 
     private void Awake()
     {
@@ -31,13 +38,26 @@ public class EnemyProjectile : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, lifeTime);
+
+        var playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) _player = playerObj.transform;
+        _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
     }
 
     private void FixedUpdate()
     {
         if (_hit) return;
+
         var next = _rb.position + _direction * (speed * Time.fixedDeltaTime);
         _rb.MovePosition(next);
+
+        if (!_player || !_gm) return;
+        var dist = Vector3.Distance(_rb.position, _player.position);
+        if (dist > hitRadius) return;
+
+        _hit = true;
+        _gm.LoseLife();
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,8 +74,10 @@ public class EnemyProjectile : MonoBehaviour
         }
 
         if (!other.CompareTag("Player") && other.GetComponent<PlayerController>() == null) return;
+        if (_gm == null) _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
+        if (_gm == null) return;
         _hit = true;
-        GameManager.Instance.LoseLife();
+        _gm.LoseLife();
         Destroy(gameObject);
     }
 }
