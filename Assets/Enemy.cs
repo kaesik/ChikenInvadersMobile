@@ -5,8 +5,12 @@ public class Enemy : MonoBehaviour
 {
     #region Stats
     [Header("Stats")]
-    public int maxHealth = 2;
+    public float maxHealth = 2f;
     public GameObject chickenWingPrefab;
+
+    [Header("Powerup")]
+    public GameObject shotUpgradePrefab;
+    public float shotUpgradeChance = 0.15f;
     #endregion
 
     #region Hit Feedback
@@ -29,7 +33,7 @@ public class Enemy : MonoBehaviour
     public float touchDamageRadius = 0.75f;
     #endregion
 
-    private int _currentHealth;
+    private float _currentHealth;
     private Renderer _rend;
     private Color _originalColor;
     private Coroutine _shootCo;
@@ -96,11 +100,11 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         _currentHealth -= dmg;
         if (_rend != null) StartCoroutine(FlashOnHit());
-        if (_currentHealth <= 0) Die();
+        if (_currentHealth <= 0f) Die();
     }
 
     private IEnumerator FlashOnHit()
@@ -113,9 +117,11 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+
         if (chickenWingPrefab != null)
-        {
             Instantiate(chickenWingPrefab, transform.position, Quaternion.identity);
-        }
+
+        if (shotUpgradePrefab && Random.value < shotUpgradeChance)
+            Instantiate(shotUpgradePrefab, transform.position, Quaternion.identity);
     }
 }

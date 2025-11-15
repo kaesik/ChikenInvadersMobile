@@ -81,12 +81,20 @@ public class EnemySpawner : MonoBehaviour
         _halfWidth = ((columns - 1) * spacingX) * 0.5f;
         _targetZInternal = targetZ;
 
+        var gm = GameManager.Instance;
+        var healthBonus = 0f;
+        if (gm != null && gm.wave > 0)
+            healthBonus = gm.enemyHealthBonusPerWave * (gm.wave - 1);
+
         for (var r = 0; r < rows; r++)
         {
             for (var c = 0; c < columns; c++)
             {
                 var localPos = new Vector3((c - (columns - 1) / 2f) * spacingX, 0.3f, -(r * spacingZ));
                 var enemy = Instantiate(enemyPrefab, transform.position + localPos, Quaternion.identity, transform);
+                var enemyComp = enemy.GetComponent<Enemy>();
+                if (enemyComp != null)
+                    enemyComp.maxHealth += healthBonus;
                 _alive.Add(enemy);
             }
         }

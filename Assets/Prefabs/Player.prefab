@@ -136,6 +136,13 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2129192566354762151, guid: fcd8369894446954da2baa3e720651f0, type: 3}
   shootPoint: {fileID: 5008359377566779364}
   fireRate: 2
+  shotAmount: 0
+  currentDamage: 1
+  damageStep: 0.1
+  fireRateStep: 0.1
+  horizontalSpread: 0.3
+  angleSpread: 10
+  maxShotAmount: 12
 --- !u!1001 &3374355384950593923
 PrefabInstance:
   m_ObjectHideFlags: 0

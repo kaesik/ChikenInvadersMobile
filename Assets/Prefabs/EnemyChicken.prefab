@@ -70,6 +70,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   chickenWingPrefab: {fileID: 3538484563903965814, guid: a2a2fafb319c8534c9dd7b2b786354cd, type: 3}
+  shotUpgradePrefab: {fileID: 6772369381573278727, guid: 42cf3521d4bfa44459ae36cd45c94be5, type: 3}
+  shotUpgradeChance: 0.15
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   hitFlashDuration: 0.15
   enemyProjectilePrefab: {fileID: 2129192566354762151, guid: 3bbfa5aeb696f9c40a74d64ed43f30ed, type: 3}
@@ -77,6 +79,7 @@ MonoBehaviour:
   minShootDelay: 2
   maxShootDelay: 4
   shootChanceAlive: 0.35
+  touchDamageRadius: 0.75
 --- !u!1 &2777834706719470978
 GameObject:
   m_ObjectHideFlags: 0

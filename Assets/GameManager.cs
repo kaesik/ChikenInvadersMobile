@@ -14,6 +14,12 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     #endregion
 
+    #region Progression
+    [Header("Progression")]
+    public int wave = 1;
+    public float enemyHealthBonusPerWave = 0.5f;
+    #endregion
+
     #region UI
     [Header("UI")]
     public TMP_Text scoreTMP;
@@ -49,6 +55,8 @@ public class GameManager : MonoBehaviour
 
     public void NextWave()
     {
+        wave += 1;
+
         if (!spawner) return;
         spawner.rows = Mathf.Clamp(spawner.rows + 1, 1, 8);
         spawner.horizontalSpeed += 0.15f;
