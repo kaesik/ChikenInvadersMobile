@@ -76,7 +76,7 @@ public class EnemyProjectile : MonoBehaviour
         if (_player)
         {
             var pc = _player.GetComponent<PlayerController>();
-            if (pc) pc.TakeDamage(1);
+            if (pc) pc.TakeDamage();
         }
 
         Destroy(gameObject);

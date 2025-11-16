@@ -125,7 +125,7 @@ public class Enemy : MonoBehaviour
                     if (!_playerController && _player)
                         _playerController = _player.GetComponent<PlayerController>();
 
-                    if (_playerController) _playerController.TakeDamage(1);
+                    if (_playerController) _playerController.TakeDamage();
 
                     _hitPlayer = true;
                     SpawnExplosion();
@@ -172,7 +172,7 @@ public class Enemy : MonoBehaviour
         if (!_playerController && _player)
             _playerController = _player.GetComponent<PlayerController>();
 
-        if (_playerController) _playerController.TakeDamage(1);
+        if (_playerController) _playerController.TakeDamage();
 
         _hitPlayer = true;
         SpawnExplosion();
@@ -209,7 +209,7 @@ public class Enemy : MonoBehaviour
         if (!other.CompareTag("Player") && !pc) return;
         if (pc == null) return;
 
-        pc.TakeDamage(1);
+        pc.TakeDamage();
         _hitPlayer = true;
         SpawnExplosion();
         Destroy(gameObject);

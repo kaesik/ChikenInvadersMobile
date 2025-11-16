@@ -170,13 +170,16 @@ public class PlayerController : MonoBehaviour
         shotAmount = Mathf.Clamp(shotAmount + 1, 1, maxShotAmount);
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage()
     {
         var gm = GameManager.Instance;
         if (gm) gm.LoseLife();
         if (AudioManager.Instance) AudioManager.Instance.PlayPlayerHit();
         if (_cam && !_isShaking) StartCoroutine(ShakeRoutine());
-        SlowMotionHit();
+        gm.Vibrate();
+        
+        if (Time.timeScale > 0.01f)
+            SlowMotionHit();
     }
 
     private void SlowMotionHit()
@@ -187,18 +190,20 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator SlowMotionRoutine()
     {
-        _isInSlowMo = true;
+        if (Time.timeScale <= 0f)
+        {
+            yield break;
+        }
 
-        var originalTimeScale = Time.timeScale;
-        var originalFixedDeltaTime = Time.fixedDeltaTime;
+        _isInSlowMo = true;
 
         Time.timeScale = slowTimeScale;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
         yield return new WaitForSecondsRealtime(slowDuration);
 
-        Time.timeScale = originalTimeScale;
-        Time.fixedDeltaTime = originalFixedDeltaTime;
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
 
         _isInSlowMo = false;
     }
@@ -226,6 +231,7 @@ public class PlayerController : MonoBehaviour
     
     private void ApplyTilt(Vector3 velocity)
     {
+        if (Time.timeScale == 0f) return;
         if (!model) return;
 
         var targetTilt = Quaternion.Euler(

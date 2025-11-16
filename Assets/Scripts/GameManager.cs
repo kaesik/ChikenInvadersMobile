@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
         var hud = HUDController.Instance;
         if (!hud) return;
         hud.SetScore(score);
@@ -98,5 +100,12 @@ public class GameManager : MonoBehaviour
 
         var ft = go.GetComponent<FloatingText>();
         if (ft) ft.Show(text);
+    }
+    
+    public void Vibrate()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        Handheld.Vibrate();
+#endif
     }
 }

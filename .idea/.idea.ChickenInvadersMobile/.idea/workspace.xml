@@ -7,18 +7,45 @@
     <list default="true" id="818e72ae-c780-43d7-ac91-516ba20ff841" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ChickenInvadersMobile/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChickenInvadersMobile/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AudioManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ChickenWing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ChickenWing.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EnemySpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyChicken.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyChicken.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyExplosion.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyExplosion.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MeteorExplosion.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MeteorExplosion.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AudioManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AudioManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BackgroundScroller.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BackgroundScroller.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ChickenWing.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ChickenWing.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemy.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemy.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemyCharger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemyCharger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemyProjectile.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemyProjectile.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemySpawner.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemySpawner.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FloatingText.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FloatingText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HUDController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HUDController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Meteor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Meteor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MeteorSpawner.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MeteorSpawner.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayerController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayerController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Projectile.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Projectile.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/RotateMesh.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/RotateMesh.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShotUpgrade.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShotUpgrade.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WaveIntroUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WaveIntroUI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,15 +68,23 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/kamil/UnityProjects/ChickenInvadersMobile/Assets/AudioManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BackgroundScroller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/kamil/UnityProjects/ChickenInvadersMobile/Assets/ChickenWing.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/EnemyCharger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/kamil/UnityProjects/ChickenInvadersMobile/Assets/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/HUDController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/3d_Models.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Import/TeKniKo_Free/Power_Ups/FBX.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/MainMenuUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Meteor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/MeteorSpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/OptionsUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PauseMenuUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/kamil/UnityProjects/ChickenInvadersMobile/Assets/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/kamil/UnityProjects/ChickenInvadersMobile/Assets/Prefabs/Enemy.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Particles/EnemyExplosion.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/RotateMesh.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/Main.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.7/Scripts/Runtime/MaterialReferenceManager.cs" root0="SKIP_HIGHLIGHTING" />
@@ -150,7 +185,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762722480290</updated>
-      <workItem from="1762722482038" duration="48338000" />
+      <workItem from="1762722482038" duration="54156000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress">
       <option name="closed" value="true" />
@@ -232,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763292047407</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Dodano tekst informujący o fali i zdobyciu punktów, dodano lepsze poruyszanie sie gracza,">
+      <option name="closed" value="true" />
+      <created>1763295425525</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763295425525</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,7 +311,8 @@
     <MESSAGE value="Dodalem poruszające się tło" />
     <MESSAGE value="dodano trzęsienie ekranu przy obrażeniach od kurczaków, poprawiono czytelność kodu i płynność latania kurczaków w kosmosie" />
     <MESSAGE value="Dodano efekty dźwiękowe i ulepszono poruszanie się kurczaków" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodano efekty dźwiękowe i ulepszono poruszanie się kurczaków" />
+    <MESSAGE value="Dodano tekst informujący o fali i zdobyciu punktów, dodano lepsze poruyszanie sie gracza," />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodano tekst informujący o fali i zdobyciu punktów, dodano lepsze poruyszanie sie gracza," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
