@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
@@ -34,6 +35,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("Meteor Rain")]
     public MeteorSpawner meteorSpawner;
     public int meteorRainEveryNWave = 5;
+    #endregion
+
+    #region Wave UI
+    [Header("Wave UI")]
+    public WaveIntroUI waveIntroUI;
     #endregion
 
     private readonly List<GameObject> _alive = new();
@@ -113,6 +119,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnWave()
     {
+        StartCoroutine(SpawnWaveRoutine());
+    }
+
+    private IEnumerator SpawnWaveRoutine()
+    {
         transform.position = new Vector3(0f, 0f, spawnZ);
         _settled = false;
         _dir = 1;
@@ -123,15 +134,31 @@ public class EnemySpawner : MonoBehaviour
 
         var gm = GameManager.Instance;
         var healthBonus = 0f;
-        if (gm && gm.wave > 0)
-            healthBonus = gm.enemyHealthBonusPerWave * (gm.wave - 1);
+        var waveNumber = 1;
+
+        if (gm)
+        {
+            waveNumber = Mathf.Max(1, gm.wave);
+            if (gm.wave > 0)
+                healthBonus = gm.enemyHealthBonusPerWave * (gm.wave - 1);
+        }
 
         var meteorWave = gm && meteorSpawner && gm.wave > 0 && meteorRainEveryNWave > 0 && gm.wave % meteorRainEveryNWave == 0;
-        if (meteorWave)
+
+        if (waveIntroUI)
         {
+            waveIntroUI.ShowWave(waveNumber, meteorWave);
+            var delay = waveIntroUI.fadeInTime + waveIntroUI.holdTime + waveIntroUI.fadeOutTime;
+            if (delay > 0f)
+                yield return new WaitForSecondsRealtime(delay);
+        }
+
+        if (meteorWave && meteorSpawner)
+        {
+            if (AudioManager.Instance) AudioManager.Instance.PlayMeteorAlarm();
             _meteorWaveActive = true;
             meteorSpawner.StartMeteorRain();
-            return;
+            yield break;
         }
 
         for (var r = 0; r < rows; r++)

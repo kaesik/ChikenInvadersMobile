@@ -45,6 +45,14 @@ public class PlayerController : MonoBehaviour
     public float slowTimeScale = 0.3f;
     public float slowDuration = 0.15f;
     #endregion
+    
+    #region Tilt
+    [Header("Tilt")]
+    public Transform model;           
+    public float tiltAmountX = 15f;   
+    public float tiltAmountZ = 10f;   
+    public float tiltSmooth = 10f;    
+    #endregion
 
     private Camera _cam;
     private Vector3 _camInitialLocalPos;
@@ -89,12 +97,17 @@ public class PlayerController : MonoBehaviour
     private void MoveTowardsXZ(Vector3 target)
     {
         var targetXZ = new Vector3(target.x, transform.position.y, target.z);
-        var newPos = Vector3.MoveTowards(transform.position, targetXZ, moveSpeed * Time.deltaTime);
 
+        var before = transform.position;
+
+        var newPos = Vector3.MoveTowards(transform.position, targetXZ, moveSpeed * Time.deltaTime);
         newPos.x = Mathf.Clamp(newPos.x, -clampX, clampX);
         newPos.z = Mathf.Clamp(newPos.z, minZ, maxZ);
 
         transform.position = newPos;
+
+        var velocity = (newPos - before) / Time.deltaTime;
+        ApplyTilt(velocity);
     }
     
     private void HandleShoot()
@@ -209,5 +222,22 @@ public class PlayerController : MonoBehaviour
 
         if (_cam) _cam.transform.localPosition = _camInitialLocalPos;
         _isShaking = false;
+    }
+    
+    private void ApplyTilt(Vector3 velocity)
+    {
+        if (!model) return;
+
+        var targetTilt = Quaternion.Euler(
+            velocity.z * tiltAmountZ,
+            0f,
+            -velocity.x * tiltAmountX
+        );
+
+        model.localRotation = Quaternion.Lerp(
+            model.localRotation,
+            targetTilt,
+            Time.deltaTime * tiltSmooth
+        );
     }
 }

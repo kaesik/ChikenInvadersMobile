@@ -53,6 +53,7 @@
     <Compile Include="Assets\MeteorSpawner.cs" />
     <Compile Include="Assets\HUDController.cs" />
     <Compile Include="Assets\Import\TeKniKo_Free\Power_Ups\Scripts\ObjectBounce.cs" />
+    <Compile Include="Assets\FloatingText.cs" />
     <Compile Include="Assets\EnemyCharger.cs" />
     <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\Meteor.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Assets\EnemyProjectile.cs" />
     <Compile Include="Assets\ShotUpgrade.cs" />
     <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\WaveIntroUI.cs" />
     <Compile Include="Assets\AudioManager.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

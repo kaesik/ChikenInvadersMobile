@@ -39,6 +39,7 @@ public class ChickenWing : MonoBehaviour
         if (dist > pickupRadius) return;
 
         _gm.AddScore(scoreValue);
+        _gm.ShowFloatingText("+" + scoreValue, transform.position);
 
         if (AudioManager.Instance) AudioManager.Instance.PlayChickenPickup();
         

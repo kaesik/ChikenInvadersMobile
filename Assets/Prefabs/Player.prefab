@@ -121,6 +121,12 @@ MonoBehaviour:
   maxShotAmount: 12
   shakeDuration: 0.2
   shakeMagnitude: 0.3
+  slowTimeScale: 0.3
+  slowDuration: 0.15
+  model: {fileID: 6117797268299312072}
+  tiltAmountX: 5
+  tiltAmountZ: 5
+  tiltSmooth: 5
 --- !u!1001 &3374355384950593923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,7 +137,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8176574050564155633, guid: 291b42fb06ae864409a7a9bda68067d5, type: 3}
       propertyPath: m_Name
-      value: 10.1
+      value: Model
       objectReference: {fileID: 0}
     - target: {fileID: 8805335978815124043, guid: 291b42fb06ae864409a7a9bda68067d5, type: 3}
       propertyPath: m_LocalScale.x

@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     #region UI
     [Header("UI")]
     public GameObject gameOverPanel;
+    
+    [Header("FX")]
+    public GameObject floatingTextPrefab;
     #endregion
 
     #region Refs
@@ -79,5 +82,21 @@ public class GameManager : MonoBehaviour
     {
         if (gameOverPanel) gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
+    }
+    
+    public void ShowFloatingText(string text, Vector3 worldPos)
+    {
+        if (!floatingTextPrefab) return;
+
+        var canvas = HUDController.Instance ? HUDController.Instance.GetComponentInParent<Canvas>() : null;
+        if (!canvas) return;
+
+        if (!Camera.main) return;
+        var screenPos = Camera.main.WorldToScreenPoint(worldPos);
+        var go = Instantiate(floatingTextPrefab, canvas.transform);
+        go.transform.position = screenPos;
+
+        var ft = go.GetComponent<FloatingText>();
+        if (ft) ft.Show(text);
     }
 }

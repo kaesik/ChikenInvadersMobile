@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip playerShootClip;
     public AudioClip upgradePickupClip;
     public AudioClip meteorDestroyClip;
+    public AudioClip meteorAlarmClip;
     #endregion
 
     private AudioClip[] _playlist;
@@ -121,6 +122,11 @@ public class AudioManager : MonoBehaviour
     public void PlayMeteorDestroy()
     {
         PlaySfx(meteorDestroyClip);
+    }
+
+    public void PlayMeteorAlarm()
+    {
+        PlaySfx(meteorAlarmClip);
     }
 
     private void PlaySfx(AudioClip clip)
