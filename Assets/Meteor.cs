@@ -2,7 +2,6 @@
 
 public class Meteor : MonoBehaviour
 {
-    public int damage = 1;
     public float hitRadius = 0.9f;
     public GameObject explosionPrefab;
     public float explosionLifetime = 2f;
@@ -27,7 +26,7 @@ public class Meteor : MonoBehaviour
         _hit = true;
 
         var pc = _player.GetComponent<PlayerController>();
-        if (pc) pc.TakeDamage(damage);
+        if (pc) pc.TakeDamage(1);
 
         if (explosionPrefab)
         {

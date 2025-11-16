@@ -17,7 +17,6 @@ public class EnemyProjectile : MonoBehaviour
     private bool _hit;
     private Vector3 _direction;
     private Transform _player;
-    private GameManager _gm;
 
     private void Awake()
     {
@@ -31,9 +30,7 @@ public class EnemyProjectile : MonoBehaviour
         Destroy(gameObject, lifeTime);
 
         var playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null) _player = playerObj.transform;
-
-        _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
+        if (playerObj) _player = playerObj.transform;
     }
 
     private void Update()
@@ -42,7 +39,7 @@ public class EnemyProjectile : MonoBehaviour
 
         transform.position += _direction * (speed * Time.deltaTime);
 
-        if (!_player || !_gm) return;
+        if (!_player) return;
 
         if (Vector3.Distance(transform.position, _player.position) <= hitRadius)
         {
@@ -75,7 +72,13 @@ public class EnemyProjectile : MonoBehaviour
         if (_hit) return;
 
         _hit = true;
-        _gm?.LoseLife();
+
+        if (_player)
+        {
+            var pc = _player.GetComponent<PlayerController>();
+            if (pc) pc.TakeDamage(1);
+        }
+
         Destroy(gameObject);
     }
 }

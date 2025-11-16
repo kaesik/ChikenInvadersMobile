@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnZ = 10f;
     public float targetZ = 4.5f;
     public float descendSpeed = 6f;
+    public float entrySpeed = 12f;
     #endregion
 
     #region Movement
@@ -53,38 +54,46 @@ public class EnemySpawner : MonoBehaviour
         if (!_settled)
         {
             var pos = transform.position;
-            var targetPos = new Vector3(pos.x, pos.y, _targetZInternal);
-            pos = Vector3.MoveTowards(pos, targetPos, descendSpeed * Time.fixedDeltaTime);
+            pos.z = Mathf.MoveTowards(pos.z, maxZ, entrySpeed * Time.fixedDeltaTime);
             transform.position = pos;
-            if (Mathf.Abs(pos.z - _targetZInternal) < 0.01f) _settled = true;
+
+            if (!(Mathf.Abs(pos.z - maxZ) < 0.01f)) return;
+            _settled = true;
+            transform.position = new Vector3(transform.position.x, transform.position.y, maxZ);
+
             return;
         }
 
         var posMove = transform.position;
         posMove.x += _dir * horizontalSpeed * Time.fixedDeltaTime;
-        posMove.z = Mathf.MoveTowards(posMove.z, _targetZInternal, descendSpeed * Time.fixedDeltaTime);
-        transform.position = posMove;
+        posMove.z += _vertDir * descendSpeed * Time.fixedDeltaTime;
 
-        var leftEdge = transform.position.x - _halfWidth;
-        var rightEdge = transform.position.x + _halfWidth;
+        var leftEdge = posMove.x - _halfWidth;
+        var rightEdge = posMove.x + _halfWidth;
 
-        if (rightEdge > rightBoundX || leftEdge < leftBoundX)
+        if (leftEdge < leftBoundX)
         {
-            _dir *= -1;
-
-            _targetZInternal += stepDownOnTurn * _vertDir;
-
-            if (_targetZInternal <= minZ)
-            {
-                _targetZInternal = minZ;
-                _vertDir = 1;
-            }
-            else if (_targetZInternal >= maxZ)
-            {
-                _targetZInternal = maxZ;
-                _vertDir = -1;
-            }
+            posMove.x = leftBoundX + _halfWidth;
+            _dir = 1;
         }
+        else if (rightEdge > rightBoundX)
+        {
+            posMove.x = rightBoundX - _halfWidth;
+            _dir = -1;
+        }
+
+        if (posMove.z < minZ)
+        {
+            posMove.z = minZ;
+            _vertDir = 1;
+        }
+        else if (posMove.z > maxZ)
+        {
+            posMove.z = maxZ;
+            _vertDir = -1;
+        }
+
+        transform.position = posMove;
 
         if (_meteorWaveActive)
         {
@@ -93,7 +102,6 @@ public class EnemySpawner : MonoBehaviour
             _meteorWaveActive = false;
             GameManager.Instance.NextWave();
             SpawnWave();
-
             return;
         }
 

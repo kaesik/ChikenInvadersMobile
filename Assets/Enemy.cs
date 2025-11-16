@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     private Color _originalColor;
     private Coroutine _shootCo;
     private Transform _player;
-    private GameManager _gm;
+    private PlayerController _playerController;
     private bool _hitPlayer;
 
     private bool _charging;
@@ -71,8 +71,9 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         var playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null) _player = playerObj.transform;
-        _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
+        if (!playerObj) return;
+        _player = playerObj.transform;
+        _playerController = playerObj.GetComponent<PlayerController>();
     }
 
     private void OnEnable()
@@ -83,10 +84,10 @@ public class Enemy : MonoBehaviour
         _returning = false;
         _exploded = false;
 
-        if (_rend != null) _rend.material.color = _originalColor;
-        if (enemyProjectilePrefab != null) _shootCo = StartCoroutine(ShootLoop());
+        if (_rend) _rend.material.color = _originalColor;
+        if (enemyProjectilePrefab) _shootCo = StartCoroutine(ShootLoop());
 
-        if (EnemyCharger.Instance != null) EnemyCharger.Instance.RegisterEnemy(this);
+        if (EnemyCharger.Instance) EnemyCharger.Instance.RegisterEnemy(this);
     }
 
     private void OnDisable()
@@ -103,14 +104,18 @@ public class Enemy : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, _chargeTarget, _chargeSpeed * Time.deltaTime);
 
-            if (_player && _gm)
+            if (_player)
             {
                 var distToPlayer = Vector3.Distance(transform.position, _player.position);
                 if (distToPlayer <= touchDamageRadius)
                 {
+                    if (!_playerController && _player)
+                        _playerController = _player.GetComponent<PlayerController>();
+
+                    if (_playerController) _playerController.TakeDamage(1);
+
                     _hitPlayer = true;
                     SpawnExplosion();
-                    _gm.LoseLife();
                     Destroy(gameObject);
                     return;
                 }
@@ -144,12 +149,17 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if (!_player || !_gm) return;
+        if (!_player) return;
         var dist = Vector3.Distance(transform.position, _player.position);
         if (dist > touchDamageRadius) return;
+
+        if (!_playerController && _player)
+            _playerController = _player.GetComponent<PlayerController>();
+
+        if (_playerController) _playerController.TakeDamage(1);
+
         _hitPlayer = true;
         SpawnExplosion();
-        _gm.LoseLife();
         Destroy(gameObject);
     }
 
@@ -168,19 +178,21 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (_hitPlayer) return;
-        if (!other.CompareTag("Player") && other.GetComponent<PlayerController>() == null) return;
-        if (_gm == null) _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
-        if (_gm == null) return;
+
+        var pc = other.GetComponent<PlayerController>();
+        if (!other.CompareTag("Player") && !pc) return;
+        if (pc == null) return;
+
+        pc.TakeDamage(1);
         _hitPlayer = true;
         SpawnExplosion();
-        _gm.LoseLife();
         Destroy(gameObject);
     }
 
     public void TakeDamage(float dmg)
     {
         _currentHealth -= dmg;
-        if (_rend != null) StartCoroutine(FlashOnHit());
+        if (_rend) StartCoroutine(FlashOnHit());
         if (_currentHealth <= 0f) Die();
     }
 
@@ -204,13 +216,13 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        if (EnemyCharger.Instance != null) EnemyCharger.Instance.UnregisterEnemy(this);
+        if (EnemyCharger.Instance) EnemyCharger.Instance.UnregisterEnemy(this);
 
         SpawnExplosion();
 
         Destroy(gameObject);
 
-        if (chickenWingPrefab != null)
+        if (chickenWingPrefab)
             Instantiate(chickenWingPrefab, transform.position, Quaternion.identity);
 
         if (shotUpgradePrefab && Random.value < shotUpgradeChance)

@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="818e72ae-c780-43d7-ac91-516ba20ff841" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/BackgroundScroller.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/BackgroundScroller.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ChickenInvadersMobile/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChickenInvadersMobile/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DinV/Dynamic Space Background/Sprites/Stars Small_1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DinV/Dynamic Space Background/Sprites/Stars Small_1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ChickenWing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ChickenWing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemyCharger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EnemyCharger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemyProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EnemyProjectile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EnemySpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HUDController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HUDController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Meteor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Meteor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Projectile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,7 +146,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762722480290</updated>
-      <workItem from="1762722482038" duration="40736000" />
+      <workItem from="1762722482038" duration="42331000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress">
       <option name="closed" value="true" />
@@ -200,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763252247557</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Dodalem poruszające się tło">
+      <option name="closed" value="true" />
+      <created>1763254873908</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1763254873908</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +245,8 @@
     <MESSAGE value="dodano powerupy i skalownaie poziomu trudności" />
     <MESSAGE value="Ulepszono HUD i UI" />
     <MESSAGE value="Dodano deszcz meteorów co 5 fal i particles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodano deszcz meteorów co 5 fal i particles" />
+    <MESSAGE value="Dodalem poruszające się tło" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodalem poruszające się tło" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

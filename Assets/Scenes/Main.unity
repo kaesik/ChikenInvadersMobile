@@ -1846,11 +1846,12 @@ MonoBehaviour:
   spacingZ: 1
   spawnZ: 20
   targetZ: 10
-  descendSpeed: 2
+  descendSpeed: 1
+  entrySpeed: 2
   horizontalSpeed: 1
   leftBoundX: -4.5
   rightBoundX: 4.5
-  stepDownOnTurn: 0.5
+  stepDownOnTurn: 5
   minZ: 2.5
   maxZ: 8
   meteorSpawner: {fileID: 1665982069}

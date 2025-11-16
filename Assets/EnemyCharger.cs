@@ -21,7 +21,7 @@ public class EnemyCharger : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this; else Destroy(gameObject);
+        if (!Instance) Instance = this; else Destroy(gameObject);
     }
 
     private void Start()
@@ -34,13 +34,13 @@ public class EnemyCharger : MonoBehaviour
 
     public void RegisterEnemy(Enemy enemy)
     {
-        if (enemy == null) return;
+        if (!enemy) return;
         if (!_enemies.Contains(enemy)) _enemies.Add(enemy);
     }
 
     public void UnregisterEnemy(Enemy enemy)
     {
-        if (enemy == null) return;
+        if (!enemy) return;
         _enemies.Remove(enemy);
     }
 
@@ -61,13 +61,13 @@ public class EnemyCharger : MonoBehaviour
             return;
         }
 
-        _enemies.RemoveAll(e => e == null || !e.gameObject.activeInHierarchy);
+        _enemies.RemoveAll(e => !e || !e.gameObject.activeInHierarchy);
 
         if (_enemies.Count > 0)
         {
             var index = Random.Range(0, _enemies.Count);
             var enemy = _enemies[index];
-            if (enemy != null)
+            if (enemy)
             {
                 var speed = Random.Range(minChargeSpeed, maxChargeSpeed);
                 enemy.StartCharge(_player.position, speed);

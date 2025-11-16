@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (!Instance) Instance = this;
         else Destroy(gameObject);
 
         if (gameOverPanel) gameOverPanel.SetActive(false);
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         var hud = HUDController.Instance;
-        if (hud == null) return;
+        if (!hud) return;
         hud.SetScore(score);
         hud.SetLives(lives);
         hud.SetWave(wave);

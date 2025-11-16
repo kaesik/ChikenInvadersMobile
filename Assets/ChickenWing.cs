@@ -23,10 +23,10 @@ public class ChickenWing : MonoBehaviour
         Destroy(gameObject, lifeTime);
 
         var playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null) _player = playerObj.transform;
+        if (playerObj) _player = playerObj.transform;
 
         _gm = GameManager.Instance;
-        if (_gm == null) _gm = FindObjectOfType<GameManager>();
+        if (!_gm) _gm = FindObjectOfType<GameManager>();
     }
 
     private void Update()
