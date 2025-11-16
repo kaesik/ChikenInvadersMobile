@@ -38,6 +38,12 @@ public class Enemy : MonoBehaviour
     public float returnPositionTolerance = 0.1f;
     #endregion
 
+    #region Explosion
+    [Header("Explosion")]
+    public GameObject explosionPrefab;
+    public float explosionLifetime = 2f;
+    #endregion
+
     private float _currentHealth;
     private Renderer _rend;
     private Color _originalColor;
@@ -53,6 +59,8 @@ public class Enemy : MonoBehaviour
 
     private Transform _homeParent;
     private Vector3 _homeLocalPos;
+
+    private bool _exploded;
 
     private void Awake()
     {
@@ -73,6 +81,7 @@ public class Enemy : MonoBehaviour
         _hitPlayer = false;
         _charging = false;
         _returning = false;
+        _exploded = false;
 
         if (_rend != null) _rend.material.color = _originalColor;
         if (enemyProjectilePrefab != null) _shootCo = StartCoroutine(ShootLoop());
@@ -100,6 +109,7 @@ public class Enemy : MonoBehaviour
                 if (distToPlayer <= touchDamageRadius)
                 {
                     _hitPlayer = true;
+                    SpawnExplosion();
                     _gm.LoseLife();
                     Destroy(gameObject);
                     return;
@@ -138,6 +148,7 @@ public class Enemy : MonoBehaviour
         var dist = Vector3.Distance(transform.position, _player.position);
         if (dist > touchDamageRadius) return;
         _hitPlayer = true;
+        SpawnExplosion();
         _gm.LoseLife();
         Destroy(gameObject);
     }
@@ -161,6 +172,7 @@ public class Enemy : MonoBehaviour
         if (_gm == null) _gm = GameManager.Instance ?? FindObjectOfType<GameManager>();
         if (_gm == null) return;
         _hitPlayer = true;
+        SpawnExplosion();
         _gm.LoseLife();
         Destroy(gameObject);
     }
@@ -194,6 +206,8 @@ public class Enemy : MonoBehaviour
     {
         if (EnemyCharger.Instance != null) EnemyCharger.Instance.UnregisterEnemy(this);
 
+        SpawnExplosion();
+
         Destroy(gameObject);
 
         if (chickenWingPrefab != null)
@@ -201,5 +215,14 @@ public class Enemy : MonoBehaviour
 
         if (shotUpgradePrefab && Random.value < shotUpgradeChance)
             Instantiate(shotUpgradePrefab, transform.position, Quaternion.identity);
+    }
+
+    private void SpawnExplosion()
+    {
+        if (_exploded) return;
+        _exploded = true;
+        if (!explosionPrefab) return;
+        var fx = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        if (explosionLifetime > 0f) Destroy(fx, explosionLifetime);
     }
 }

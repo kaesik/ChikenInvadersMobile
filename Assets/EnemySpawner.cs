@@ -29,11 +29,18 @@ public class EnemySpawner : MonoBehaviour
     public float maxZ = 6.5f;
     #endregion
 
+    #region Meteor Rain
+    [Header("Meteor Rain")]
+    public MeteorSpawner meteorSpawner;
+    public int meteorRainEveryNWave = 5;
+    #endregion
+
     private readonly List<GameObject> _alive = new();
     private bool _settled;
     private int _dir = 1;
     private float _halfWidth;
     private float _targetZInternal;
+    private bool _meteorWaveActive;
 
     private void Start()
     {
@@ -66,6 +73,17 @@ public class EnemySpawner : MonoBehaviour
             _targetZInternal = Mathf.Clamp(_targetZInternal - stepDownOnTurn, minZ, maxZ);
         }
 
+        if (_meteorWaveActive)
+        {
+            var meteors = FindObjectsOfType<Meteor>();
+            if (meteors.Length != 0) return;
+            _meteorWaveActive = false;
+            GameManager.Instance.NextWave();
+            SpawnWave();
+
+            return;
+        }
+
         _alive.RemoveAll(e => !e);
         if (_alive.Count != 0) return;
         GameManager.Instance.NextWave();
@@ -85,6 +103,14 @@ public class EnemySpawner : MonoBehaviour
         var healthBonus = 0f;
         if (gm && gm.wave > 0)
             healthBonus = gm.enemyHealthBonusPerWave * (gm.wave - 1);
+
+        var meteorWave = gm && meteorSpawner && gm.wave > 0 && meteorRainEveryNWave > 0 && gm.wave % meteorRainEveryNWave == 0;
+        if (meteorWave)
+        {
+            _meteorWaveActive = true;
+            meteorSpawner.StartMeteorRain();
+            return;
+        }
 
         for (var r = 0; r < rows; r++)
         {

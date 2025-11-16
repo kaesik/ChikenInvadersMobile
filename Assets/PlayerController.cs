@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,11 +34,20 @@ public class PlayerController : MonoBehaviour
     public int maxShotAmount = 12;
     #endregion
 
+    #region Hit Feedback
+    [Header("Hit Feedback")]
+    public float shakeDuration = 0.2f;
+    public float shakeMagnitude = 0.3f;
+    #endregion
+
     private Camera _cam;
+    private Vector3 _camInitialLocalPos;
+    private bool _isShaking;
 
     private void Start()
     {
         _cam = Camera.main;
+        if (_cam) _camInitialLocalPos = _cam.transform.localPosition;
     }
 
     public void Update()
@@ -94,61 +104,6 @@ public class PlayerController : MonoBehaviour
     private void FirePattern()
     {
         var amount = Mathf.Max(1, shotAmount);
-
-        if (amount == 1)
-        {
-            SpawnProjectile(shootPoint.position, shootPoint.rotation);
-            return;
-        }
-
-        if (amount == 2)
-        {
-            SpawnProjectile(OffsetPos(-horizontalSpread), shootPoint.rotation);
-            SpawnProjectile(OffsetPos(horizontalSpread), shootPoint.rotation);
-            return;
-        }
-
-        if (amount == 3)
-        {
-            SpawnProjectile(OffsetPos(-horizontalSpread), shootPoint.rotation);
-            SpawnProjectile(shootPoint.position, shootPoint.rotation);
-            SpawnProjectile(OffsetPos(horizontalSpread), shootPoint.rotation);
-            return;
-        }
-
-        if (amount == 4)
-        {
-            SpawnProjectile(OffsetPos(-horizontalSpread * 0.6f), shootPoint.rotation);
-            SpawnProjectile(OffsetPos(horizontalSpread * 0.6f), shootPoint.rotation);
-
-            SpawnProjectile(OffsetPos(-horizontalSpread), RotAngle(-angleSpread));
-            SpawnProjectile(OffsetPos(horizontalSpread), RotAngle(angleSpread));
-            return;
-        }
-
-        if (amount == 5)
-        {
-            SpawnProjectile(OffsetPos(-horizontalSpread * 0.6f), shootPoint.rotation);
-            SpawnProjectile(shootPoint.position, shootPoint.rotation);
-            SpawnProjectile(OffsetPos(horizontalSpread * 0.6f), shootPoint.rotation);
-
-            SpawnProjectile(OffsetPos(-horizontalSpread), RotAngle(-angleSpread));
-            SpawnProjectile(OffsetPos(horizontalSpread), RotAngle(angleSpread));
-            return;
-        }
-
-        if (amount == 6)
-        {
-            SpawnProjectile(OffsetPos(-horizontalSpread * 0.4f), shootPoint.rotation);
-            SpawnProjectile(OffsetPos(horizontalSpread * 0.4f), shootPoint.rotation);
-
-            SpawnProjectile(OffsetPos(-horizontalSpread * 0.9f), RotAngle(-angleSpread));
-            SpawnProjectile(OffsetPos(horizontalSpread * 0.9f), RotAngle(angleSpread));
-            SpawnProjectile(OffsetPos(-horizontalSpread * 1.4f), RotAngle(-angleSpread * 1.5f));
-            SpawnProjectile(OffsetPos(horizontalSpread * 1.4f), RotAngle(angleSpread * 1.5f));
-            return;
-        }
-
         var clamped = Mathf.Clamp(amount, 1, maxShotAmount);
         var middle = (clamped - 1) * 0.5f;
         for (var i = 0; i < clamped; i++)
@@ -175,7 +130,7 @@ public class PlayerController : MonoBehaviour
     {
         var go = Instantiate(projectilePrefab, position, rotation);
         var proj = go.GetComponent<Projectile>();
-        if (proj != null) proj.damage = currentDamage;
+        if (proj) proj.damage = currentDamage;
     }
 
     public void UpgradeDamage()
@@ -191,5 +146,34 @@ public class PlayerController : MonoBehaviour
     public void UpgradeAmount()
     {
         shotAmount = Mathf.Clamp(shotAmount + 1, 1, maxShotAmount);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        var gm = GameManager.Instance;
+        if (gm) gm.LoseLife();
+
+        if (_cam && !_isShaking) StartCoroutine(ShakeRoutine());
+    }
+
+    private IEnumerator ShakeRoutine()
+    {
+        _isShaking = true;
+        var elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            if (_cam)
+            {
+                var offset = Random.insideUnitSphere * shakeMagnitude;
+                _cam.transform.localPosition = _camInitialLocalPos + offset;
+            }
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        if (_cam) _cam.transform.localPosition = _camInitialLocalPos;
+        _isShaking = false;
     }
 }

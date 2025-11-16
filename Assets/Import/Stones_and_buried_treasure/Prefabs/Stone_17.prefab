@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 4092730746449522}
   - component: {fileID: 33113618327836496}
   - component: {fileID: 23730243837836364}
+  - component: {fileID: 2908332296714007883}
+  - component: {fileID: 2311484651142423902}
+  - component: {fileID: 5359706396333384566}
   m_Layer: 0
   m_Name: Stone_17
   m_TagString: Untagged
@@ -83,3 +86,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2908332296714007883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860445168790544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0a3a7d2c2c40808102e39ede95a2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationAxis: {x: 1, y: 1, z: 1}
+  rotationSpeed: 90
+  useWorldSpace: 0
+  randomizeSpeed: 1
+  randomMin: 60
+  randomMax: 180
+--- !u!114 &2311484651142423902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860445168790544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8055576a0e43c9b8077dc31667061f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  hitRadius: 0.8
+  explosionPrefab: {fileID: 3158418967992794073, guid: 4a9a9f478f7f9b44aa94754c5b675503, type: 3}
+  explosionLifetime: 2
+--- !u!64 &5359706396333384566
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860445168790544}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300040, guid: 5f3a7deba91ee3341b2266db1be8c0a0, type: 3}

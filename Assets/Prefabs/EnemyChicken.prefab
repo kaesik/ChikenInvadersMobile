@@ -81,6 +81,8 @@ MonoBehaviour:
   shootChanceAlive: 0.35
   touchDamageRadius: 0.75
   returnPositionTolerance: 0.1
+  explosionPrefab: {fileID: 3158418967992794073, guid: ae9400875ce38354c90b60f0ae1cba14, type: 3}
+  explosionLifetime: 2
 --- !u!1 &2777834706719470978
 GameObject:
   m_ObjectHideFlags: 0
