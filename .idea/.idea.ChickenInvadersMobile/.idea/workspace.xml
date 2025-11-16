@@ -5,59 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="818e72ae-c780-43d7-ac91-516ba20ff841" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Meteor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Meteor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeteorSpawner.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeteorSpawner.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Space.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BackgroundScroller.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/BackgroundScroller.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ChickenInvadersMobile/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChickenInvadersMobile/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DinV/Dynamic Space Background/Sprites/Stars Small_1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DinV/Dynamic Space Background/Sprites/Stars Small_1.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EnemySpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Import/EmaceArt/Low Poly Food &amp; Packaging/Prefabs/Egg/eggs-sep_01_PRE.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Import/EmaceArt/Low Poly Food &amp; Packaging/Prefabs/Egg/eggs-sep_01_PRE.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/Prefabs/Stone_14.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/Prefabs/Stone_14.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/Prefabs/Stone_15.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/Prefabs/Stone_15.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/Prefabs/Stone_17.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/Prefabs/Stone_17.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/Prefabs/Stone_18.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/Prefabs/Stone_18.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyChicken.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyChicken.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Bone.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Bone.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Emerald.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Emerald.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Flask_Health.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Flask_Health.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Flask_Mana.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Flask_Mana.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Foliage.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Foliage.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Gold.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Gold.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Ground.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Ground.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Ruby.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Ruby.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Stell.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Stell.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Stone.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Stone.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Tree_Fir_Foliage.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Tree_Fir_Foliage.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Tree_Fir_Wood.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Tree_Fir_Wood.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Wood_1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Wood_1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Wood_2.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Wood_2.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Wood_3.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Materials/Wood_3.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Stones_and_buried_treasure.FBX" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models/Stones_and_buried_treasure.FBX.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,15 +34,16 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/BackgroundScroller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/EnemyCharger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/HUDController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Import/Stones_and_buried_treasure/3d_Models.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Import/TeKniKo_Free/Power_Ups/FBX.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Meteor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/MeteorSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/kamil/UnityProjects/ChickenInvadersMobile/Assets/Prefabs/Enemy.prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/RotateMesh.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/Main.unity" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Stones_and_buried_treasure/3d_Models.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.7/Scripts/Runtime/MaterialReferenceManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -187,7 +142,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762722480290</updated>
-      <workItem from="1762722482038" duration="38380000" />
+      <workItem from="1762722482038" duration="40736000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress">
       <option name="closed" value="true" />
@@ -237,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763244085132</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Dodano deszcz meteorów co 5 fal i particles">
+      <option name="closed" value="true" />
+      <created>1763252247557</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1763252247557</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,7 +232,8 @@
     <MESSAGE value="dodano odpowiednie kolizje, strzły przeciwników i punkty za zbieranie udek z kurczaka" />
     <MESSAGE value="dodano powerupy i skalownaie poziomu trudności" />
     <MESSAGE value="Ulepszono HUD i UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ulepszono HUD i UI" />
+    <MESSAGE value="Dodano deszcz meteorów co 5 fal i particles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodano deszcz meteorów co 5 fal i particles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -49,6 +49,7 @@
     <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\Projectile.cs" />
     <Compile Include="Assets\Enemy.cs" />
+    <Compile Include="Assets\BackgroundScroller.cs" />
     <Compile Include="Assets\MeteorSpawner.cs" />
     <Compile Include="Assets\HUDController.cs" />
     <Compile Include="Assets\Import\TeKniKo_Free\Power_Ups\Scripts\ObjectBounce.cs" />

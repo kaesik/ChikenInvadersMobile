@@ -41,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
     private float _halfWidth;
     private float _targetZInternal;
     private bool _meteorWaveActive;
+    private int _vertDir = -1;
 
     private void Start()
     {
@@ -70,7 +71,19 @@ public class EnemySpawner : MonoBehaviour
         if (rightEdge > rightBoundX || leftEdge < leftBoundX)
         {
             _dir *= -1;
-            _targetZInternal = Mathf.Clamp(_targetZInternal - stepDownOnTurn, minZ, maxZ);
+
+            _targetZInternal += stepDownOnTurn * _vertDir;
+
+            if (_targetZInternal <= minZ)
+            {
+                _targetZInternal = minZ;
+                _vertDir = 1;
+            }
+            else if (_targetZInternal >= maxZ)
+            {
+                _targetZInternal = maxZ;
+                _vertDir = -1;
+            }
         }
 
         if (_meteorWaveActive)
@@ -97,7 +110,8 @@ public class EnemySpawner : MonoBehaviour
         _dir = 1;
         _alive.Clear();
         _halfWidth = ((columns - 1) * spacingX) * 0.5f;
-        _targetZInternal = targetZ;
+        _targetZInternal = Mathf.Clamp(targetZ, minZ, maxZ);
+        _vertDir = -1;
 
         var gm = GameManager.Instance;
         var healthBonus = 0f;
