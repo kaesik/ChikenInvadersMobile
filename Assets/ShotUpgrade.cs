@@ -44,6 +44,8 @@ public class ShotUpgrade : MonoBehaviour
             {
                 pc.UpgradeAmount();
             }
+            
+            if (AudioManager.Instance) AudioManager.Instance.PlayUpgradePickup();
         }
 
         Destroy(gameObject);

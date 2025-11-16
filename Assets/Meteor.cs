@@ -33,7 +33,9 @@ public class Meteor : MonoBehaviour
             var fx = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             if (explosionLifetime > 0f) Destroy(fx, explosionLifetime);
         }
-
+        
+        if (AudioManager.Instance) AudioManager.Instance.PlayMeteorDestroy();
+        
         Destroy(gameObject);
     }
 }

@@ -44,6 +44,13 @@ public class Enemy : MonoBehaviour
     public float explosionLifetime = 2f;
     #endregion
 
+    #region Wobble
+    [Header("Wobble")]
+    public float wobbleAmplitudeX = 0.3f;
+    public float wobbleAmplitudeZ = 0.2f;
+    public float wobbleFrequency = 2f;
+    #endregion
+
     private float _currentHealth;
     private Renderer _rend;
     private Color _originalColor;
@@ -61,6 +68,9 @@ public class Enemy : MonoBehaviour
     private Vector3 _homeLocalPos;
 
     private bool _exploded;
+
+    private Vector3 _baseLocalPos;
+    private float _wobbleOffset;
 
     private void Awake()
     {
@@ -88,6 +98,9 @@ public class Enemy : MonoBehaviour
         if (enemyProjectilePrefab) _shootCo = StartCoroutine(ShootLoop());
 
         if (EnemyCharger.Instance) EnemyCharger.Instance.RegisterEnemy(this);
+
+        _baseLocalPos = transform.localPosition;
+        _wobbleOffset = Random.Range(0f, Mathf.PI * 2f);
     }
 
     private void OnDisable()
@@ -139,6 +152,7 @@ public class Enemy : MonoBehaviour
                 if (distBack <= returnPositionTolerance)
                 {
                     _returning = false;
+                    if (transform.parent) _baseLocalPos = transform.localPosition;
                 }
             }
             else
@@ -148,6 +162,8 @@ public class Enemy : MonoBehaviour
 
             return;
         }
+
+        ApplyWobble();
 
         if (!_player) return;
         var dist = Vector3.Distance(transform.position, _player.position);
@@ -163,6 +179,15 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void ApplyWobble()
+    {
+        if (!transform.parent) return;
+
+        var t = Time.time * wobbleFrequency + _wobbleOffset;
+        var offset = new Vector3(Mathf.Sin(t) * wobbleAmplitudeX, 0f, Mathf.Cos(t) * wobbleAmplitudeZ);
+        transform.localPosition = _baseLocalPos + offset;
+    }
+
     private IEnumerator ShootLoop()
     {
         while (true)
@@ -172,6 +197,7 @@ public class Enemy : MonoBehaviour
             var origin = shootPoint ? shootPoint.position : transform.position;
             var rot = Quaternion.LookRotation(Vector3.back, Vector3.up);
             Instantiate(enemyProjectilePrefab, origin, rot);
+            if (AudioManager.Instance) AudioManager.Instance.PlayEnemyShoot();
         }
     }
 
@@ -220,6 +246,8 @@ public class Enemy : MonoBehaviour
 
         SpawnExplosion();
 
+        if (AudioManager.Instance) AudioManager.Instance.PlayChickenDie();
+        
         Destroy(gameObject);
 
         if (chickenWingPrefab)

@@ -40,9 +40,16 @@ public class PlayerController : MonoBehaviour
     public float shakeMagnitude = 0.3f;
     #endregion
 
+    #region Slow Motion
+    [Header("Slow Motion")]
+    public float slowTimeScale = 0.3f;
+    public float slowDuration = 0.15f;
+    #endregion
+
     private Camera _cam;
     private Vector3 _camInitialLocalPos;
     private bool _isShaking;
+    private bool _isInSlowMo;
 
     private void Start()
     {
@@ -114,6 +121,8 @@ public class PlayerController : MonoBehaviour
             var rot = RotAngle(angle);
             SpawnProjectile(pos, rot);
         }
+        
+        if (AudioManager.Instance) AudioManager.Instance.PlayPlayerShoot();
     }
 
     private Vector3 OffsetPos(float offsetX)
@@ -152,8 +161,33 @@ public class PlayerController : MonoBehaviour
     {
         var gm = GameManager.Instance;
         if (gm) gm.LoseLife();
-
+        if (AudioManager.Instance) AudioManager.Instance.PlayPlayerHit();
         if (_cam && !_isShaking) StartCoroutine(ShakeRoutine());
+        SlowMotionHit();
+    }
+
+    private void SlowMotionHit()
+    {
+        if (_isInSlowMo) return;
+        StartCoroutine(SlowMotionRoutine());
+    }
+
+    private IEnumerator SlowMotionRoutine()
+    {
+        _isInSlowMo = true;
+
+        var originalTimeScale = Time.timeScale;
+        var originalFixedDeltaTime = Time.fixedDeltaTime;
+
+        Time.timeScale = slowTimeScale;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+        yield return new WaitForSecondsRealtime(slowDuration);
+
+        Time.timeScale = originalTimeScale;
+        Time.fixedDeltaTime = originalFixedDeltaTime;
+
+        _isInSlowMo = false;
     }
 
     private IEnumerator ShakeRoutine()
