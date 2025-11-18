@@ -49,7 +49,6 @@
     <Compile Include="Assets\Scripts\MeteorSpawner.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Meteor.cs" />
-    <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\UI\WaveIntroUI.cs" />
     <Compile Include="Assets\Scripts\ShotUpgrade.cs" />
     <Compile Include="Assets\Scripts\UI\FloatingText.cs" />
@@ -60,6 +59,7 @@
     <Compile Include="Assets\Scripts\EnemyCharger.cs" />
     <Compile Include="Assets\Scripts\UI\OptionsUI.cs" />
     <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
+    <Compile Include="Assets\Scripts\PlayerProjectile.cs" />
     <Compile Include="Assets\Scripts\ChickenWing.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

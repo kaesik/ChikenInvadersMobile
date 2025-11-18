@@ -1,5 +1,6 @@
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -49,7 +50,14 @@ public class GameManager : MonoBehaviour
         hud.SetLives(lives);
         hud.SetWave(wave);
     }
-
+    
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        var scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
+    }
+    
     public void AddScore(int value)
     {
         score += value;

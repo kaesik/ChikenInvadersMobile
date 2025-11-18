@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
     #region Stats
     [Header("Motion")]
-    public float speed = 18f;
+    public float speed = 20f;
     public float lifeTime = 3f;
     public float topZLimit = 10f;
 
@@ -12,15 +12,31 @@ public class Projectile : MonoBehaviour
     public float damage = 1f;
     #endregion
 
+    private Rigidbody _rb;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
+
+    private void OnEnable()
+    {
+        if (!_rb) _rb = GetComponent<Rigidbody>();
+
+        _rb.useGravity = false;
+        _rb.isKinematic = false;
+        _rb.velocity = Vector3.forward * speed;
+    }
+
     private void Start()
     {
         Destroy(gameObject, lifeTime);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.position += transform.forward * (speed * Time.deltaTime);
-        if (transform.position.z > topZLimit) Destroy(gameObject);
+        if (transform.position.z > topZLimit)
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

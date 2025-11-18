@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     #region Bounds
     [Header("Bounds")]
     public float minZ = -6.0f;
-    public float maxZ =  1.5f;
+    public float maxZ = 1.5f;
     #endregion
 
     #region Shooting
@@ -48,10 +48,10 @@ public class PlayerController : MonoBehaviour
     
     #region Tilt
     [Header("Tilt")]
-    public Transform model;           
-    public float tiltAmountX = 15f;   
-    public float tiltAmountZ = 10f;   
-    public float tiltSmooth = 10f;    
+    public Transform model;
+    public float tiltAmountX = 15f;
+    public float tiltAmountZ = 10f;
+    public float tiltSmooth = 10f;
     #endregion
 
     private Camera _cam;
@@ -59,15 +59,28 @@ public class PlayerController : MonoBehaviour
     private bool _isShaking;
     private bool _isInSlowMo;
 
+    private bool _mouseDown;
+    private Vector2 _lastMousePos;
+
+    private bool _movedThisFrame;
+
     private void Start()
     {
         _cam = Camera.main;
         if (_cam) _camInitialLocalPos = _cam.transform.localPosition;
     }
 
-    public void Update()
+    private void Update()
     {
+        if (Time.timeScale == 0f) return;
+        
+        _movedThisFrame = false;
+
         HandleMove();
+
+        if (!_movedThisFrame)
+            ApplyTilt(Vector3.zero);
+
         HandleShoot();
     }
 
@@ -75,32 +88,44 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            var world = ScreenToWorldOnGround(Input.GetTouch(0).position);
-            MoveTowardsXZ(world);
+            var touch = Input.GetTouch(0);
+
+            if (touch.phase != TouchPhase.Moved && touch.phase != TouchPhase.Stationary) return;
+            var delta = touch.deltaPosition;
+            MoveByDelta(delta);
         }
-        else if (Input.GetMouseButton(0))
+        else
         {
-            var world = ScreenToWorldOnGround(Input.mousePosition);
-            MoveTowardsXZ(world);
+            if (Input.GetMouseButtonDown(0))
+            {
+                _mouseDown = true;
+                _lastMousePos = Input.mousePosition;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                _mouseDown = false;
+            }
+
+            if (!_mouseDown || !Input.GetMouseButton(0)) return;
+            var current = (Vector2)Input.mousePosition;
+            var delta = current - _lastMousePos;
+            _lastMousePos = current;
+            MoveByDelta(delta);
         }
     }
 
-    private Vector3 ScreenToWorldOnGround(Vector2 screenPos)
+    private void MoveByDelta(Vector2 delta)
     {
-        var ray = _cam.ScreenPointToRay(screenPos);
-        var ground = new Plane(Vector3.up, new Vector3(0f, transform.position.y, 0f));
-        if (!ground.Raycast(ray, out var enter)) return transform.position;
-        var world = ray.GetPoint(enter);
-        return world;
-    }
+        if (delta.sqrMagnitude <= Mathf.Epsilon) return;
 
-    private void MoveTowardsXZ(Vector3 target)
-    {
-        var targetXZ = new Vector3(target.x, transform.position.y, target.z);
+        _movedThisFrame = true;
 
         var before = transform.position;
 
-        var newPos = Vector3.MoveTowards(transform.position, targetXZ, moveSpeed * Time.deltaTime);
+        var move = new Vector3(delta.x, 0f, delta.y);
+        move *= moveSpeed / Screen.height;
+
+        var newPos = before + move;
         newPos.x = Mathf.Clamp(newPos.x, -clampX, clampX);
         newPos.z = Mathf.Clamp(newPos.z, minZ, maxZ);
 
@@ -109,7 +134,7 @@ public class PlayerController : MonoBehaviour
         var velocity = (newPos - before) / Time.deltaTime;
         ApplyTilt(velocity);
     }
-    
+
     private void HandleShoot()
     {
         _fireTimer += Time.deltaTime;
@@ -151,7 +176,7 @@ public class PlayerController : MonoBehaviour
     private void SpawnProjectile(Vector3 position, Quaternion rotation)
     {
         var go = Instantiate(projectilePrefab, position, rotation);
-        var proj = go.GetComponent<Projectile>();
+        var proj = go.GetComponent<PlayerProjectile>();
         if (proj) proj.damage = currentDamage;
     }
 
@@ -185,6 +210,7 @@ public class PlayerController : MonoBehaviour
     private void SlowMotionHit()
     {
         if (_isInSlowMo) return;
+        if (Time.timeScale <= 0f) return;
         StartCoroutine(SlowMotionRoutine());
     }
 

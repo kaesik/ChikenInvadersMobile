@@ -7,45 +7,18 @@
     <list default="true" id="818e72ae-c780-43d7-ac91-516ba20ff841" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ChickenInvadersMobile/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChickenInvadersMobile/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AudioManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AudioManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BackgroundScroller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BackgroundScroller.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ChickenWing.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ChickenWing.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Enemy.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Enemy.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EnemyCharger.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EnemyCharger.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EnemyProjectile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EnemyProjectile.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EnemySpawner.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EnemySpawner.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FloatingText.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FloatingText.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HUDController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HUDController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Meteor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Meteor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MeteorSpawner.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MeteorSpawner.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PlayerController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PlayerController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Projectile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Projectile.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/RotateMesh.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/RotateMesh.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EggProjectile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EggProjectile.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainPanel.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShotUpgrade.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShotUpgrade.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/WaveIntroUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/WaveIntroUI.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyProjectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerProjectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Projectile.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerProjectile.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +158,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762722480290</updated>
-      <workItem from="1762722482038" duration="54156000" />
+      <workItem from="1762722482038" duration="62834000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress">
       <option name="closed" value="true" />
@@ -275,7 +248,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763295425525</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Przearanżowano foldery w projekcie, dodano menu, opcje i pauze">
+      <option name="closed" value="true" />
+      <created>1763310336863</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1763310336863</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,7 +293,8 @@
     <MESSAGE value="dodano trzęsienie ekranu przy obrażeniach od kurczaków, poprawiono czytelność kodu i płynność latania kurczaków w kosmosie" />
     <MESSAGE value="Dodano efekty dźwiękowe i ulepszono poruszanie się kurczaków" />
     <MESSAGE value="Dodano tekst informujący o fali i zdobyciu punktów, dodano lepsze poruyszanie sie gracza," />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodano tekst informujący o fali i zdobyciu punktów, dodano lepsze poruyszanie sie gracza," />
+    <MESSAGE value="Przearanżowano foldery w projekcie, dodano menu, opcje i pauze" />
+    <option name="LAST_COMMIT_MESSAGE" value="Przearanżowano foldery w projekcie, dodano menu, opcje i pauze" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -54,18 +54,19 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (_hit) return;
 
-        var projectiles = FindObjectsOfType<Projectile>();
-
+        var projectiles = FindObjectsOfType<PlayerProjectile>();
         foreach (var p in projectiles)
         {
             var dist = Vector3.Distance(transform.position, p.transform.position);
-            if (!(dist < 0.4f)) continue;
+            if (dist > 0.4f) continue;
+
             Destroy(p.gameObject);
             Destroy(gameObject);
             _hit = true;
             return;
         }
     }
+
 
     private void HitPlayer()
     {

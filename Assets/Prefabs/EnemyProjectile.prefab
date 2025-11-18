@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8738772968578546826}
   - component: {fileID: 8256054315376693863}
   m_Layer: 8
-  m_Name: EggProjectile
+  m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
